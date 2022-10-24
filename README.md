@@ -1,2 +1,1 @@
-# TA17
-# [Ir a tarea 17](TA17.txt)
+# <b>[Ver tarea 17](TA17.txt)</b>

@@ -1,0 +1,86 @@
+-----------------------------EJERCICIO 1------------------------------------------------------------------------------
+use TA17_ex1
+db.createCollection('fabricantes')
+db.createCollection('articulos')
+db.fabricantes.insertMany([{codigo:1, nombre: 'Intel'}, {codigo:2, nombre:'AMD'}, {codigo:3, nombre:'Kingston'}])
+db.articulos.insertOne({codigo:1, nombre: 'Core i7', precio: 299, fabricante: {codigo:1, nombre: 'Intel'}})
+db.articulos.insertOne({codigo:2, nombre: 'Core i5', precio: 199, fabricante: {codigo:1, nombre: 'Intel'}})
+db.articulos.insertOne({codigo:3, nombre:'Ryzen 7', precio: 289, fabricante:{codigo:2, nombre:'AMD'}})
+db.articulos.insertOne({codigo:4, nombre:'SSD 500Gb', precio: 89, fabricante:{codigo:3, nombre:'Kingston'}})
+
+
+-----------------------------EJERCICIO 2------------------------------------------------------------------------------
+use TA17_ex2
+db.createCollection('empleados')
+db.createCollection('departamentos')
+db.departamentos.insertMany([{nombre: 'Finanzas', presupuesto: 20000}, {nombre:'Marketing', presupuesto: 25000},{nombre:'IT', presupuesto: 45000}])
+db.empleados.insertMany([{dni: '1234567G', nombre: 'Juan', apellidos: 'Perez Gomez', departamento: {nombre: 'Finanzas', presupuesto: 20000}},
+{dni: '2344567F', nombre: 'María', apellidos: 'Perez Gonzalez', departamento: {nombre: 'Finanzas', presupuesto: 20000}},
+{dni: '5634567G', nombre: 'Pepito', apellidos: 'Miron', departamento: {nombre:'IT', presupuesto: 45000}}])
+
+
+-----------------------------EJERCICIO 3------------------------------------------------------------------------------
+use TA17_ex3
+db.almacenes.insertMany([{lugar: 'Reus', capacidad: 150}, {lugar:'Tarragona', capacidad:250}, {lugar:'Barcelona', capacidad: 6000}, {lugar:'Madrid', capacidad: 10000}])
+db.cajas.insertMany([{contenido: 'perfume, papel higiénico XL', valor:25, almacen: {lugar: 'Reus', capacidad: 150}}, {contenido: 'Arroz', valor:139, almacen: {lugar: 'Reus', capacidad: 150}},
+ {contenido: 'madera', valor:425, almacen: {lugar: 'Reus', capacidad: 150}}, {contenido: 'Pasta', valor:1200, almacen: {lugar: 'Reus', capacidad: 150}}])
+
+
+-----------------------------EJERCICIO 4------------------------------------------------------------------------------
+use TA17_ex4
+db.peliculas.insertMany([{nombre:'El señor de los anillos', calificacion_edad:13}, {nombre:'Bullet Train', calificacion_edad:16},
+ {nombre:'Avatar', calificacion_edad:3}, {nombre: 'El padrino', calificacion_edad:18}])
+db.salas.insertMany([{nombre: 'Sala 1', pelicula: {nombre:'Bullet Train', calificacion_edad:16}}, {nombre: 'Sala 2', pelicula: {nombre:'El señor de los anillos', calificacion_edad:13}},
+ {nombre: 'Sala 3', pelicula:  {nombre:'Avatar', calificacion_edad:3}}, {nombre: 'Sala 4', pelicula:  {nombre: 'El padrino', calificacion_edad:18}}])
+
+
+-----------------------------EJERCICIO 5------------------------------------------------------------------------------
+use TA17_ex5
+db.despachos.insertMany([{numero: 100, capacidad: 5}, {numero: 101, capacidad: 15}, {numero:104, capacidad:100}, {numero:103, capacidad: 3}])
+db.directores.insertMany([{dni: '12345678J', nomApels: 'Jorge Gimenez', despacho: {numero:103, capacidad: 3}}, {dni: '12345678L', nomApels: 'Claudia Gomez', dni_jefe: '12345678J',
+ despacho: {numero:103, capacidad: 3}}, {dni: '23456789Y', nomApels: 'Leo Messi', despacho: {numero:103, capacidad: 3}}])
+
+
+-----------------------------EJERCICIO 6------------------------------------------------------------------------------
+use TA17_ex6
+db.proveedores.insertMany([{nombre: 'Hacendado'}, {nombre: 'Valor'}, {nombre: 'Carrefour'}, {nombre: 'Día'}])
+db.piezas.insertMany([{nombre: 'puerta'}, {nombre: 'manija'}, {nombre:'tornillo'}, {nombre: 'ventana'}])
+db.suministra.insertMany([{pieza: ObjectId('635684a67a02f2b880eea74d'), proveedor: ObjectId('6356708e7a02f2b880eea749'), precio: 150}, {pieza: ObjectId('635684a67a02f2b880eea74d'), proveedor: ObjectId('6356708e7a02f2b880eea74a'), precio: 120},
+ {pieza: ObjectId('635684a67a02f2b880eea750'), proveedor: ObjectId('6356708e7a02f2b880eea74a'), precio: 220}])
+
+
+-----------------------------EJERCICIO 7------------------------------------------------------------------------------
+use TA17_ex7
+db.cajeros.insertMany([{nom_apels: 'Leo Messi'}, {nom_apels: 'Dibu Martínez'}, {nom_apels: 'Javier Mascherano'}, {nom_apels: 'Kun Aguero'}])
+db.productos.insertMany([{nombre: 'Arroz integral', precio: 2.45}, {nombre:'Jugo naranja', precio:2.99}, {nombre:'Lasagna', precio: 7}, {nombre:'Pepsi', precio: 5}])
+db.maquinas_registradoras.insertMany([{piso: 1}, {piso: 2}, {piso: 3}, {piso:4}])
+db.venta.insertMany([{cajero: ObjectId('6356864fbe06c9c5f0b81f1a'), maquina: ObjectId('635686d8be06c9c5f0b81f22'), producto: ObjectId('635686b6be06c9c5f0b81f1e')}
+, {cajero: ObjectId('6356864fbe06c9c5f0b81f1a'), maquina: ObjectId('635686d8be06c9c5f0b81f23'), producto: ObjectId('635686b6be06c9c5f0b81f1f')},
+ {cajero: ObjectId('6356864fbe06c9c5f0b81f1d'), maquina: ObjectId('635686d8be06c9c5f0b81f23'), producto: ObjectId('635686b6be06c9c5f0b81f21')}])
+
+
+-----------------------------EJERCICIO 8------------------------------------------------------------------------------
+use TA17_ex8
+db.facultad.insertMany([{nombre: 'Harvard'}, {nombre: 'UBA'}, {nombre:'Universidad de Salamanca'}, {nombre: 'Universidad de Madrid'}])
+db.investigadores.insertMany([{nombre:'Leopoldo Lugones',dni: '12345678J', facultad: {nombre: 'UBA'}}, {nombre:'Leo Messi',dni: '12345678H', facultad: {nombre: 'UBA'}},
+ {nombre:'Facundo Manes',dni: '12345678T', facultad: {nombre: 'UBA'}}, {nombre:'Bill Gates',dni: '12345678A', facultad: {nombre: 'Harvard'}}])
+db.equipos.insertMany([{nombre:'Power Rangers', facultad: {nombre: 'UBA'}}, {nombre:'Piratas', facultad: {nombre: 'Universidad de Madrid'}}, {nombre:'Los caballeros templarios', facultad: {nombre: 'Universidad de Salamanca'}}, {nombre:'Supercampeones', facultad: {nombre: 'Harvard'}}])
+db.reserva.insertMany([{investigador: ObjectId('63568911be06c9c5f0b81f32'), equipo: ObjectId('635689a9be06c9c5f0b81f35'), comienzo: '2022-07-09', fin:'2022-10-09'},
+ {investigador: ObjectId('63568911be06c9c5f0b81f32'), equipo: ObjectId('635689a9be06c9c5f0b81f35'), comienzo: '2022-07-09', fin:'2022-10-09'},
+ {investigador: ObjectId('63568911be06c9c5f0b81f34'), equipo: ObjectId('635689a9be06c9c5f0b81f35'), comienzo: '2022-07-09', fin:'2022-10-09'}, 
+{investigador: ObjectId('63568911be06c9c5f0b81f34'), equipo: ObjectId('635689a9be06c9c5f0b81f37'), comienzo: '2022-09-09', fin:'2023-01-09'}])
+
+
+-----------------------------EJERCICIO 9------------------------------------------------------------------------------
+use TA17_ex9
+db.cientificos.insertMany([{nom_apels: 'Leo Messi', dni: '12345678J'}, {nombre: 'Fideo Di María', dni: '12345678F'}, {nombre: 'Leo Paredes', dni:'1234234T'}, {nombre:'Pepe Sand', dni:'12345687R'}])
+db.proyectos.insertMany([{nombre: 'Ganar mundial', horas: 100}, {nombre: 'Descubrir exoplaneta', horas: 10000}, {nombre:'Panacea', horas:99999999}])
+db.asignado_a.insertMany([{cientifico: ObjectId('63568bd5be06c9c5f0b81f3d'), proyecto: ObjectId('63568c2ebe06c9c5f0b81f41')},{cientifico: ObjectId('63568bd5be06c9c5f0b81f40'), proyecto: ObjectId('63568c2ebe06c9c5f0b81f42')},{cientifico: ObjectId('63568bd5be06c9c5f0b81f3f'), proyecto: ObjectId('63568c2ebe06c9c5f0b81f41')},{cientifico: ObjectId('63568bd5be06c9c5f0b81f3d'), proyecto: ObjectId('63568c2ebe06c9c5f0b81f41')}])
+
+
+
+
+
+
+
+
